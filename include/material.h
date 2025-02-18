@@ -57,13 +57,14 @@ private:
 class metal : public material {
     // The metal class represents a reflective material.
 public:
-    metal(const color& albedo) : albedo(albedo) {}
+    metal(const color& albedo, double fuzz) : albedo(albedo), fuzz(fuzz < 1 ? fuzz : 1) {}
 
     bool scatter(
             const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered
             ) const override {
         // Reflect the ray around the normal.
         vec3 reflected = reflect(r_in.direction(), rec.normal);
+        reflected = unit_vector(reflected) + fuzz * random_unit_vector();
         scattered = ray(rec.p, reflected);
         attenuation = albedo;
 
@@ -71,7 +72,8 @@ public:
     }
 
 private:
-    color albedo; // The albedo of the material.
+    color   albedo; // The albedo of the material.
+    double  fuzz;   // The fuzziness of the reflection.
 };
 
 #endif //RAYTRACINGINONEWEEKEND_MATERIAL_H
