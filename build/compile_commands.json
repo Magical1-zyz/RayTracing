@@ -1,0 +1,8 @@
+[
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/RayTracingInOneWeekend.dir/includes_CXX.rsp -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles\\RayTracingInOneWeekend.dir\\src\\main.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\main.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/main.cpp",
+  "output": "CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj"
+}
+]
