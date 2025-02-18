@@ -3,11 +3,11 @@
 //
 
 /************************
- * @Author: ASUS
+ * @Author: Magical1
  * @Time: 2025/2/16 20:00
  * @File: interval.h
  * @Software: CLion
- * @Project: raytracinginoneweekend
+ * @Project: RayTracingInOneWeekend
  * @Description:
  */
 

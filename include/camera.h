@@ -2,10 +2,20 @@
 // Created by ASUS on 2025/2/16.
 //
 
+/************************
+ * @Author: Magical1
+ * @Time: 2025/2/16 20:00
+ * @File: camera.h
+ * @Software: CLion
+ * @Project: RayTracingInOneWeekend
+ * @Description:
+ */
+
 #ifndef RAYTRACINGINONEWEEKEND_CAMERA_H
 #define RAYTRACINGINONEWEEKEND_CAMERA_H
 
 #include "hittable.h"
+#include "material.h"
 
 class camera {
 public:
@@ -102,10 +112,14 @@ private:
         hit_record rec;
         // If the ray hits a sphere, return the normal vector as a color.
         if (world.hit(r, interval(0.001, infinity), rec)) {
-            // Lambertian reflection, we scatter the ray in a random direction.
-            vec3 direction = rec.normal + random_unit_vector();
-            // 0.5 is the probability of reflection.
-            return 0.1 * ray_color(ray(rec.p, direction), depth - 1, world);
+            ray scattered;
+            color attenuation;
+
+            // If the ray is scattered, return the scattered ray color.
+            if (rec.mat->scatter(r, rec, attenuation, scattered))
+                return attenuation * ray_color(scattered, depth - 1, world);
+
+            return color(0, 0, 0);
         }
 
         // Otherwise, return the background color.

@@ -2,6 +2,15 @@
 // Created by ASUS on 2025/2/15.
 //
 
+/************************
+ * @Author: Magical1
+ * @Time: 2025/2/15 20:00
+ * @File: ray.h
+ * @Software: CLion
+ * @Project: RayTracingInOneWeekend
+ * @Description:
+ */
+
 #ifndef RAYTRACINGINONEWEEKEND_RAY_H
 #define RAYTRACINGINONEWEEKEND_RAY_H
 

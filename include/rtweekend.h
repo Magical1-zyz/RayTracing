@@ -2,6 +2,15 @@
 // Created by ASUS on 2025/2/16.
 //
 
+/************************
+ * @Author: Magical1
+ * @Time: 2025/2/16 20:00
+ * @File: rtweekend.h
+ * @Software: CLion
+ * @Project: RayTracingInOneWeekend
+ * @Description:
+ */
+
 #ifndef RAYTRACINGINONEWEEKEND_RTWEEKEND_H
 #define RAYTRACINGINONEWEEKEND_RTWEEKEND_H
 

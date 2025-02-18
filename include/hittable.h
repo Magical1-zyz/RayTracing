@@ -2,6 +2,15 @@
 // Created by ASUS on 2025/2/16.
 //
 
+/************************
+ * @Author: Magical1
+ * @Time: 2025/2/16 20:00
+ * @File: hittable.h
+ * @Software: CLion
+ * @Project: RayTracingInOneWeekend
+ * @Description:
+ */
+
 #ifndef RAYTRACINGINONEWEEKEND_HITTABLE_H
 #define RAYTRACINGINONEWEEKEND_HITTABLE_H
 

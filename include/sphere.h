@@ -2,8 +2,19 @@
 // Created by ASUS on 2025/2/16.
 //
 
+/************************
+ * @Author: Magical1
+ * @Time: 2025/2/16 20:00
+ * @File: sphere.h
+ * @Software: CLion
+ * @Project: RayTracingInOneWeekend
+ * @Description:
+ */
+
 #ifndef RAYTRACINGINONEWEEKEND_SPHERE_H
 #define RAYTRACINGINONEWEEKEND_SPHERE_H
+
+#include <utility>
 
 #include "hittable.h"
 #include "rtweekend.h"
@@ -11,9 +22,8 @@
 class sphere : public hittable {
 public:
     // Constructors
-    sphere(const point3& center, double radius) : center(center), radius(std::fmax(0,radius)) {
-        // TODO: Initialize the material pointer 'mat'.
-    }
+    sphere(const point3& center, double radius, shared_ptr<material> mat)
+        : center(center), radius(radius), mat(std::move(mat)) {};
 
     // The hit_sphere function takes a center and radius for a sphere, and a ray.
     bool hit(const ray&r, interval ray_t, hit_record& rec) const override {
