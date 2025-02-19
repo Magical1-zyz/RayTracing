@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_RayTracingInOneWeekend: phony || CMakeFi
 
 build CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj: CXX_COMPILER__RayTracingInOneWeekend_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/main.cpp || cmake_object_order_depends_target_RayTracingInOneWeekend
   DEP_FILE = CMakeFiles\RayTracingInOneWeekend.dir\src\main.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always -std=gnu++20
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/./include
   OBJECT_DIR = CMakeFiles\RayTracingInOneWeekend.dir
   OBJECT_FILE_DIR = CMakeFiles\RayTracingInOneWeekend.dir\src
