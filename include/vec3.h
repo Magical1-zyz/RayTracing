@@ -132,6 +132,15 @@ inline vec3 unit_vector(vec3 v) {
     return v / v.length();
 }
 
+inline vec3 random_in_unit_disk() {
+    // Returns a random vector in the unit disk.
+    while (true) {
+        auto p = vec3(random_double(-1, 1), random_double(-1, 1), 0);
+        if (p.length_squared() < 1)
+            return p;
+    }
+}
+
 inline vec3 random_unit_vector() {
     // Returns a random unit vector.
     while (true) {
