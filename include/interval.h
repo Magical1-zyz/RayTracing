@@ -22,6 +22,12 @@ public:
 
     interval(double min, double max) : min(min), max(max) {}
 
+    interval(const interval&a, const interval&b) {
+        // Create the interval tightly enclosing the two input intervals.
+        min = a.min <= b.min ? a.min : b.min;
+        max = a.max >= b.max ? a.max : b.max;
+    }
+
     double size() const {
         return max - min;
     }
@@ -38,6 +44,12 @@ public:
         if (x < min) return min;
         if (x > max) return max;
         return x;
+    }
+
+    interval expand(double delta) const {
+        // Expand the interval by a given delta to both sides.
+        auto half_delta = 0.5 * delta;
+        return interval(min - half_delta, max + half_delta);
     }
 
     static const interval empty, universe;

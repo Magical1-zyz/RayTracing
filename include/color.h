@@ -15,6 +15,7 @@
 #define RAYTRACINGINONEWEEKEND_COLOR_H
 
 #include "rtweekend.h"
+
 #include "interval.h"
 #include "vec3.h"
 

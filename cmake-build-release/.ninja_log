@@ -1,14 +1,18 @@
 # ninja log v5
-21	789	7617406763526858	CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj	323b1a43e1a8c887
+2	1080	7618360662973839	CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj	323b1a43e1a8c887
 1	492	7617395415782268	CMakeFiles/main.dir/src/camera.cpp.obj	3556c8736a1796f5
 7	431	7617395415173902	CMakeFiles/main.dir/src/material.cpp.obj	96a596dbf4777b08
+1080	1359	7618360665700525	E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe	7111f908e0d6e7d3
 18	385	7617402359254580	CMakeFiles/RayTracingInOneWeekend.dir/src/sphere.cpp.obj	cfee0fe83dc9b6a1
 9	396	7617395414827982	CMakeFiles/main.dir/src/hittable_list.cpp.obj	948b4dd9a10ea267
-0	98	7617407168432297	build.ninja	4442eb9ce956070f
-16	606	7617395416919601	CMakeFiles/main.dir/src/main.cpp.obj	ce7ec361ebb5c3b3
+0	107	7619817853993495	build.ninja	4442eb9ce956070f
 2	56	7617404745573988	CMakeFiles/RayTracingInOneWeekend.dir/src/camera.cpp.obj	97996f552947e741
+16	606	7617395416919601	CMakeFiles/main.dir/src/main.cpp.obj	ce7ec361ebb5c3b3
 13	386	7617395414725641	CMakeFiles/main.dir/src/sphere.cpp.obj	d7e136eb7d4ff448
 15	432	7617402359724682	CMakeFiles/RayTracingInOneWeekend.dir/src/hittable_list.cpp.obj	828b48410827554a
 9	471	7617402360117241	CMakeFiles/RayTracingInOneWeekend.dir/src/material.cpp.obj	92ff20c6e0a031f2
-7	382	7617402359207157	CMakeFiles/RayTracingInOneWeekend.dir/src/color.cpp.obj	1cb9dcd02b379cbc
-2	270	7617407236588198	E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe	7111f908e0d6e7d3
+4	322	7617418400187238	CMakeFiles/RayTracingInOneWeekend.dir/src/color.cpp.obj	1cb9dcd02b379cbc
+3	1487	7619943944490699	CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj	323b1a43e1a8c887
+1487	1928	7619943948836796	E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe	7111f908e0d6e7d3
+2	1328	7619966170792388	CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj	323b1a43e1a8c887
+1329	1611	7619966173551131	E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe	7111f908e0d6e7d3

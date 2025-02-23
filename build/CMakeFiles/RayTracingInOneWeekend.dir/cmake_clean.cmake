@@ -4,7 +4,7 @@ file(REMOVE_RECURSE
   "E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe"
   "E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe.manifest"
   "E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.pdb"
-  "E:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/libRayTracingInOneWeekend.dll.a"
+  "libRayTracingInOneWeekend.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

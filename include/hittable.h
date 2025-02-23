@@ -16,6 +16,8 @@
 
 #include "rtweekend.h"
 
+#include "AABB.h"
+
 class material;
 
 
@@ -28,6 +30,8 @@ public:
     vec3    normal;
     shared_ptr<material> mat;
     double  t;
+    double  u;
+    double  v;
     bool    front_face;
 
     void set_face_normal(const ray& r, const vec3& outward_normal) {
@@ -47,5 +51,6 @@ public:
     virtual  ~hittable() = default;
 
     virtual bool hit(const ray& r, interval ray_t, hit_record& rec) const = 0;
+    virtual AABB bounding_box() const = 0;
 };
 #endif //RAYTRACINGINONEWEEKEND_HITTABLE_H

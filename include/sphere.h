@@ -14,10 +14,11 @@
 #ifndef RAYTRACINGINONEWEEKEND_SPHERE_H
 #define RAYTRACINGINONEWEEKEND_SPHERE_H
 
-#include <utility>
+#include "rtweekend.h"
 
 #include "hittable.h"
-#include "rtweekend.h"
+
+#include <utility>
 
 class sphere : public hittable {
 public:
@@ -25,12 +26,22 @@ public:
     // Stationary Sphere
     sphere(const point3& static_center, double radius, shared_ptr<material> mat)
         : center(static_center, vec3(0,0,0)),
-        radius(std::fmax(0, radius)), mat(std::move(mat)) {};
+        radius(std::fmax(0, radius)), mat(std::move(mat))
+    {
+        auto rvec = vec3(radius, radius, radius);
+        bbox = AABB(static_center - rvec, static_center + rvec);
+    };
     // Moving Sphere
     sphere(const point3& center1, const point3& center2, double radius,
            shared_ptr<material> mat)
         : center(center1, center2 - center1),
-        radius(std::fmax(0, radius)), mat(std::move(mat)) {};
+        radius(std::fmax(0, radius)), mat(std::move(mat))
+    {
+        auto rvec = vec3(radius, radius, radius);
+        AABB box1(center.at(0) - rvec, center.at(0) + rvec);
+        AABB box2(center.at(1) - rvec, center.at(1) + rvec);
+        bbox = AABB(box1, box2);
+    };
 
 
     // The hit_sphere function takes a center and radius for a sphere, and a ray.
@@ -68,10 +79,14 @@ public:
         return true;
     }
 
+    AABB bounding_box() const override {
+        return bbox;
+    }
 private:
     // Data
     ray center;
     double radius;
     shared_ptr<material> mat;
+    AABB bbox;
 };
 #endif //RAYTRACINGINONEWEEKEND_SPHERE_H

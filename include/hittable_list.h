@@ -15,7 +15,10 @@
 #define RAYTRACINGINONEWEEKEND_HITTABLE_LIST_H
 
 #include "rtweekend.h"
+
+#include "AABB.h"
 #include "hittable.h"
+
 
 #include <vector>
 
@@ -32,6 +35,7 @@ public:
 
     void add(shared_ptr<hittable> object) {
         objects.push_back(object);
+        bbox = AABB(bbox, object->bounding_box());
     }
 
     bool hit (const ray& r, interval ray_t, hit_record& rec) const override {
@@ -49,6 +53,12 @@ public:
 
         return hit_anything;
     }
+
+    AABB bounding_box() const override {
+        return bbox;
+    }
+private:
+    AABB bbox;
 };
 
 #endif //RAYTRACINGINONEWEEKEND_HITTABLE_LIST_H
