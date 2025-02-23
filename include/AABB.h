@@ -61,7 +61,7 @@ public:
             auto t0 = (ax.min - ray_orig[axis]) * adinv;
             auto t1 = (ax.max - ray_orig[axis]) * adinv;
 
-            // TODO: To understand the following code
+            // Ensure t0 is the intersection with the near plane.
             if (t0 < t1) {
                 if (t0 > ray_t.min) ray_t.min = t0;
                 if (t1 < ray_t.max) ray_t.max = t1;
