@@ -15,8 +15,10 @@
 
 #include <utility>
 
-#include "rtw_stb_image.h"
 #include "rtweekend.h"
+
+#include "perlin.h"
+#include "rtw_stb_image.h"
 
 
 class texture {
@@ -91,7 +93,23 @@ public:
     return color(color_scale * pixel[0], color_scale * pixel[1], color_scale * pixel[2]);
   }
 
- private:
+private:
     rtw_image image;
+};
+
+class noise_texture : public texture {
+  // The noise_texture class represents a noise texture.
+public:
+  explicit noise_texture(double scale) : scale(scale) {}
+
+  color value(double u, double v, const point3& p) const override {
+//    // 0.5 * (1.0 + noise.noise(scale * p)): map the [-1,+1] noise value to [0,1].
+//    return color(1, 1, 1) * 0.5 * (1.0 + noise.noise(scale * p));
+      return color(.5, .5, .5) * (1.0 + std::sin(scale * p.z() + 10 * noise.turb(p, 7)));
+  }
+
+private:
+  perlin noise; // The noise object.
+  double scale; // The scale of the noise.
 };
 #endif //RAYTRACINGINONEWEEKEND_TEXTURE_H

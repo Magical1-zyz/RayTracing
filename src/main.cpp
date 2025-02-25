@@ -28,8 +28,10 @@ void bouncing_spheres() {
   hittable_list world;
 
   // Ground Sphere
-  auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
-  world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material));
+  auto ground_material = make_shared<lambertian>(
+      color(0.5, 0.5, 0.5));
+  world.add(make_shared<sphere>(
+      point3(0, -1000, 0), 1000, ground_material));
 
   // Random Spheres
   for (int a = -11; a < 11; ++a) {
@@ -134,14 +136,18 @@ void chckered_spheres() {
 }
 
 void earth() {
-  auto earth_texture = make_shared<image_texture>("../assets/textures/earthmap.jpg");
+  // Globe
+  auto earth_texture = make_shared<image_texture>(
+      "../assets/textures/earthmap.jpg");
   auto earth_surface = make_shared<lambertian>(earth_texture);
-  auto globe = make_shared<sphere>(point3(0, 0, 0), 2, earth_surface);
+  auto globe = make_shared<sphere>(
+      point3(0, 0, 0), 2, earth_surface);
 
+  // Camera
   camera cam;
 
   cam.aspect_ratio      = 16.0 / 9.0;
-  cam.image_width       = 400;
+  cam.image_width       = 1200;
   cam.samples_per_pixel = 100;
   cam.max_depth         = 50;
 
@@ -155,20 +161,55 @@ void earth() {
   cam.render(hittable_list(globe));
 }
 
+void perlin_spheres() {
+  // World
+  hittable_list world;
+
+  auto pertext = make_shared<noise_texture>(4);
+  world.add(make_shared<sphere>(
+      point3(0,-1000,0), 1000, make_shared<lambertian>(pertext)));
+  world.add(make_shared<sphere>(
+      point3(0,2,0), 2, make_shared<lambertian>(pertext)));
+
+  // BVH Acceleration
+  world = hittable_list(make_shared<bvh_node>(world));
+
+  // Camera
+  camera cam;
+  cam.aspect_ratio      = 16.0 / 9.0;
+  cam.image_width       = 1200;
+  cam.samples_per_pixel = 100;
+  cam.max_depth         = 50;
+
+  cam.vfov              = 20;
+  cam.lookfrom          = point3(13, 2, 3);
+  cam.lookat            = point3 (0, 0, 0);
+  cam.vup               = vec3(0, 1, 0);
+
+  cam.defocus_angle     = 0;
+
+  // Render
+  cam.render(world);
+}
+
 int main() {
     // time
     auto start_time = std::chrono::high_resolution_clock::now();
 
-  switch (3) {
-    case 1:
+  switch (4) {
+    // Choose the scene to render.
+    case 1: // Bouncing Spheres
       bouncing_spheres();
       break;
-    case 2:
+    case 2: // Checkered Spheres
       chckered_spheres();
       break;
-    case 3:
+    case 3: // Earth
       earth();
       break;
+    case 4: // Perlin Spheres
+        perlin_spheres();
+        break;
   }
 
     // end time
