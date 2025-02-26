@@ -26,12 +26,12 @@ class hit_record {
     // the normal at the point of intersection,
     // and the distance from the ray origin to the point of intersection.
 public:
-    point3  p;
-    vec3    normal;
-    shared_ptr<material> mat;
-    double  t;
-    double  u;
-    double  v;
+    point3  p; // The point of intersection.
+    vec3    normal; // The normal at the point of intersection.
+    shared_ptr<material> mat; // The material of the object.
+    double  t; // The distance from the ray origin to the point of intersection.
+    double  u; // The u texture coordinate.
+    double  v; // The v texture coordinate;
     bool    front_face;
 
     void set_face_normal(const ray& r, const vec3& outward_normal) {
