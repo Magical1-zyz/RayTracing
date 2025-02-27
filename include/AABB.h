@@ -106,5 +106,14 @@ public:
 const AABB AABB::empty = AABB(interval::empty, interval::empty, interval::empty);
 const AABB AABB::universe = AABB(interval::universe, interval::universe, interval::universe);
 
+AABB operator+(const AABB& bbox, const vec3& offset) {
+    // Return the AABB translated by the given offset.
+    return AABB(bbox.x + offset.x(), bbox.y + offset.y(), bbox.z + offset.z());
+}
+
+AABB operator+(const vec3& offset, const AABB& bbox) {
+    // Return the AABB translated by the given offset.
+    return bbox + offset;
+}
 
 #endif //RAYTRACINGINONEWEEKEND_AABB_H

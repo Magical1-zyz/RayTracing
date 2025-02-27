@@ -49,7 +49,7 @@ public:
     interval expand(double delta) const {
         // Expand the interval by a given delta to both sides.
         auto half_delta = 0.5 * delta;
-        return interval(min - half_delta, max + half_delta);
+        return {min - half_delta, max + half_delta};
     }
 
     static const interval empty, universe;
@@ -58,4 +58,12 @@ public:
 const interval interval::empty = interval(+infinity, -infinity);
 const interval interval::universe = interval(-infinity, +infinity);
 
+interval operator+(const interval& i, double x) {
+    // Return the interval expanded by the given value.
+    return {i.min + x, i.max + x};
+}
+
+interval operator+(double x, const interval& i) {
+    return i + x;
+}
 #endif //RAYTRACINGINONEWEEKEND_INTERVAL_H
