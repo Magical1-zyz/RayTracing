@@ -26,6 +26,7 @@ class texture {
 public:
     virtual  ~texture() = default;
 
+    // Return the color of the texture at the given UV coordinates.
     virtual color value(double u, double v, const point3& p) const = 0;
 };
 

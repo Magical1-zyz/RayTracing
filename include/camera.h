@@ -23,13 +23,14 @@ public:
     int     image_width        = 100;   // Rendered image width in pixel count
     int     samples_per_pixel  = 10;    // Number of samples per pixel
     int     max_depth          = 50;    // Maximum ray bounce depth
+    color   background_color;           // Scene background color
 
     double  vfov        = 90;                           // Vertical view angle (field of view) in degrees
     point3  lookfrom    = point3(0, 0, 0);  // Camera location
     point3  lookat      = point3(0, 0, -1); // Camera target
     vec3    vup         = vec3(0, 1, 0);    // Camera up vector
 
-    double  defocus_angle   = 0;  // Variation angle of rays through each pixel
+    double  defocus_angle   = 0;    // Variation angle of rays through each pixel
     double  focus_dist      = 10;   // Distance from camera lookfrom to plan of perfect focus
 
 
@@ -94,7 +95,7 @@ private:
         auto viewport_u = viewport_width * u;   // Vector across the horizontal viewport edge
         auto viewport_v = viewport_height * -v;  // Vector down the vertical viewport edge
 
-        // Caculate the horizontal and vertical delta vectors from pixel to pixel.
+        // Calculate the horizontal and vertical delta vectors from pixel to pixel.
         pixel_delta_u = viewport_u / image_width;
         pixel_delta_v = viewport_v / image_height;
 
@@ -127,7 +128,7 @@ private:
 
     vec3 sample_square() const {
         // Returns the vector to a random point in the [-.5, -.5] - [+.5, +.5] unit square.
-        return vec3(random_double() - 0.5, random_double() - 0.5, 0);
+        return {random_double() - 0.5, random_double() - 0.5, 0};
     }
 
     point3 defocus_disk_sample() const {
@@ -141,11 +142,27 @@ private:
 
         // If we've exceeded the ray bounce limit, no more light is gathered.
         if (depth <= 0)
-            return color(0, 0, 0);
+            return {0, 0, 0};
 
         hit_record rec;
+
+        // If the ray hits nothing, return the background color.
+        if (!world.hit(r, interval(0.001, infinity), rec))
+            return background_color;
+        else{
+          // If the ray hits a light-emitting material, return the emitted light.
+          ray scattered;
+          color attenuation;
+          color color_from_emission = rec.mat->emitted(rec.u, rec.v, rec.p);
+
+          if (!rec.mat->scatter(r, rec, attenuation, scattered))
+              // If the ray is absorbed, return the emitted light.
+              return color_from_emission;
+          else
+              // If the ray is scattered, return the scattered ray color and the emitted light.
+              return color_from_emission + attenuation * ray_color(scattered, depth - 1, world);
+        }
         // If the ray hits a sphere, return the normal vector as a color.
-        if (world.hit(r, interval(0.001, infinity), rec)) {
             ray scattered;
             color attenuation;
 
@@ -153,8 +170,8 @@ private:
             if (rec.mat->scatter(r, rec, attenuation, scattered))
                 return attenuation * ray_color(scattered, depth - 1, world);
 
-            return color(0, 0, 0);
-        }
+            return {0, 0, 0};
+
 
         // Otherwise, return the background color.
         vec3 unit_direction = unit_vector(r.direction());

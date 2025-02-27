@@ -26,6 +26,10 @@ class material {
 public:
     virtual ~material() = default;
 
+    virtual color emitted(double u, double v, const point3& p) const {
+        return {0, 0, 0};
+    }
+
     virtual bool scatter (
             const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered
             ) const {
@@ -36,8 +40,8 @@ public:
 class lambertian : public material {
     // The lambertian class represents a diffuse, or matte, material.
 public:
-    lambertian(const color& albedo) : tex(make_shared<solid_color>(albedo)) {}
-    lambertian(shared_ptr<texture> a) : tex(std::move(a)) {}
+    explicit lambertian(const color& albedo) : tex(make_shared<solid_color>(albedo)) {}
+    explicit lambertian(shared_ptr<texture> a) : tex(std::move(a)) {}
 
     bool scatter(
             const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered
@@ -86,7 +90,7 @@ private:
 class  dielectric : public material {
     // The dielectric class represents a transparent material.
 public:
-    dielectric(double refraction_index) : refraction_index(refraction_index) {}
+    explicit dielectric(double refraction_index) : refraction_index(refraction_index) {}
 
     bool scatter(
             const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered
@@ -123,6 +127,20 @@ private:
         r0 = r0 * r0;
         return r0 + (1 - r0) * std::pow((1 - cosine), 5);
     }
+};
+
+class diffuse_light : public material {
+    // The diffuse_light class represents a light-emitting material.
+public:
+  explicit diffuse_light(shared_ptr<texture> tex) : tex(std::move(tex)) {}
+  explicit diffuse_light(const color& emit) : tex(make_shared<solid_color>(emit)) {}
+
+  color emitted(double u, double v, const point3& p) const  override{
+    return tex->value(u, v, p);
+  }
+
+private:
+    shared_ptr<texture> tex;
 };
 
 #endif //RAYTRACINGINONEWEEKEND_MATERIAL_H
