@@ -108,7 +108,7 @@ const AABB AABB::universe = AABB(interval::universe, interval::universe, interva
 
 AABB operator+(const AABB& bbox, const vec3& offset) {
     // Return the AABB translated by the given offset.
-    return AABB(bbox.x + offset.x(), bbox.y + offset.y(), bbox.z + offset.z());
+    return {bbox.x + offset.x(), bbox.y + offset.y(), bbox.z + offset.z()};
 }
 
 AABB operator+(const vec3& offset, const AABB& bbox) {

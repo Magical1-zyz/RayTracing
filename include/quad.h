@@ -7,7 +7,7 @@
  * @File: quad.h
  * @Software: CLion
  * @Project: RayTracingInOneWeekend
- * @Description: The quad class represents a quadric surface.
+ * @Description: The quad class represents a quadrilateral surface.
  */
 #ifndef RAYTRACINGINONEWEEKEND_INCLUDE_QUAD_H_
 #define RAYTRACINGINONEWEEKEND_INCLUDE_QUAD_H_
@@ -19,7 +19,7 @@
 #include "hittable.h"
 
 class quad : public hittable {
-  // The quad class represents a quadric surface.
+  // The quad class represents a quadrilateral surface.
 public:
   quad(const point3& Q, const vec3& u, const vec3& v, shared_ptr<material> mat)
       : Q(Q), u(u), v(v), mat_ptr(std::move(mat))
@@ -97,7 +97,7 @@ private:
   shared_ptr<material> mat_ptr; // The material of the quadrilateral surface.
 };
 
-inline shared_ptr<hittable_list> box(const point3& a, const point3& b, shared_ptr<material> mat)
+inline shared_ptr<hittable_list> box(const point3& a, const point3& b, const shared_ptr<material>& mat)
 {
   // Returns the 3D box (six sides) that contains the two opposite vertices a and b.
 

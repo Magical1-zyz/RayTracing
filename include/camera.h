@@ -123,7 +123,7 @@ private:
         auto ray_direction   = unit_vector(pixel_sample - ray_origin);
         auto ray_time       = random_double();
 
-        return ray(ray_origin, ray_direction, ray_time);
+        return {ray_origin, ray_direction, ray_time};
     }
 
     vec3 sample_square() const {

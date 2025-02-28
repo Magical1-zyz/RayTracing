@@ -33,7 +33,7 @@ void write_color(std::ostream &out, const color& pixel_color) {
     auto g = pixel_color.y();
     auto b = pixel_color.z();
 
-    // Apply a linear to gamma transform for gammaa 2.0.
+    // Apply a linear to gamma transform for gamma 2.0.
     r = linear_to_gamma(r);
     g = linear_to_gamma(g);
     b = linear_to_gamma(b);
@@ -44,7 +44,7 @@ void write_color(std::ostream &out, const color& pixel_color) {
     int gbyte = int(256 * intensity.clamp(g));
     int bbyte = int(256 * intensity.clamp(b));
 
-    // Write out the pixel color compoents.
+    // Write out the pixel color components.
     out << rbyte << ' ' << gbyte << ' ' << bbyte << '\n';
 }
 #endif //RAYTRACINGINONEWEEKEND_COLOR_H

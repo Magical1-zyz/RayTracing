@@ -18,7 +18,7 @@
 
 class ray {
 public:
-    ray() {}
+    ray() = default;
 
     ray(const point3& origin, const vec3& direction, double time)
         : orig(origin), dir(direction), tm(time) {}
@@ -38,6 +38,6 @@ public:
 private:
     point3  orig;
     vec3    dir;
-    double  tm;
+    double  tm{};
 };
 #endif //RAYTRACINGINONEWEEKEND_RAY_H

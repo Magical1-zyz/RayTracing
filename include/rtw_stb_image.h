@@ -28,9 +28,9 @@
 
 class rtw_image {
  public:
-  rtw_image() {}
+  rtw_image() = default;
 
-  rtw_image(const char* image_filename) {
+  explicit rtw_image(const char* image_filename) {
     // Loads image data from the specified file. If the RTW_IMAGES environment variable is
     // defined, looks only in that directory for the image file. If the image was not found,
     // searches for the specified image file first from the current directory, then in the

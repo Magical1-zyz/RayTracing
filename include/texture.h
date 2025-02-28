@@ -33,7 +33,7 @@ public:
 class solid_color : public texture {
     // The solid_color class represents a solid color texture.
 public:
-        solid_color(const color& albedo) : albedo(albedo) {}
+        explicit solid_color(const color& albedo) : albedo(albedo) {}
 
         solid_color(double red, double green, double blue)
             : solid_color(color(red, green, blue)) {}
@@ -76,11 +76,11 @@ private:
 class image_texture : public texture {
   // The image_texture class represents an image texture.
 public:
-  image_texture(const char* filename) : image(filename) {}
+  explicit image_texture(const char* filename) : image(filename) {}
 
   color value(double u, double v, const point3& p) const override {
     // If we have no texture data, then return solid cyan as a debugging aid.
-    if (image.height() <= 0) return color(0, 1, 1);
+    if (image.height() <= 0) return {0, 1, 1};
 
     // Clamp input texture coordinates to [0,1] x [1,0]
     u = interval(0, 1).clamp(u);
@@ -91,7 +91,7 @@ public:
     auto pixel = image.pixel_data(i, j);
 
     auto color_scale = 1.0 / 255.0;
-    return color(color_scale * pixel[0], color_scale * pixel[1], color_scale * pixel[2]);
+    return {color_scale * pixel[0], color_scale * pixel[1], color_scale * pixel[2]};
   }
 
 private:

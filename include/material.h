@@ -143,4 +143,21 @@ private:
     shared_ptr<texture> tex;
 };
 
+class isotropic : public material {
+  // The isotropic class represents a material that scatters light in all directions.
+ public:
+  explicit isotropic(const color& albedo) : tex(make_shared<solid_color>(albedo)) {}
+  explicit isotropic(shared_ptr<texture> tex) : tex(std::move(tex)) {}
+
+  bool scatter(
+      const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered
+      ) const override {
+    scattered = ray(rec.p, random_unit_vector(), r_in.time());
+    attenuation = tex->value(rec.u, rec.v, rec.p);
+    return true;
+  }
+
+ private:
+  shared_ptr<texture> tex;
+};
 #endif //RAYTRACINGINONEWEEKEND_MATERIAL_H
