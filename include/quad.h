@@ -86,7 +86,7 @@ public:
     return true;
   }
 
-private:
+ protected:
   point3  Q;      // The origin of the quadrilateral surface.
   vec3    u;      // The first axis of the quadrilateral surface.
   vec3    v;      // The second axis of the quadrilateral surface.
@@ -120,4 +120,71 @@ inline shared_ptr<hittable_list> box(const point3& a, const point3& b, const sha
 
   return sides; // Return the six sides of the box.
 }
+
+class tri : public quad {
+  // The tri class represents a triangular surface.
+ public:
+    tri(const point3& o, const vec3& aa, const vec3& ab, shared_ptr<material> m)
+        : quad(o, aa, ab, std::move(m))
+        {}
+
+    virtual bool is_interior(double a, double b, hit_record& rec) const override {
+      if ((a < 0) || (b < 0) || (a + b > 1))
+        return false;
+
+      rec.u = a;
+      rec.v = b;
+      return true;
+    }
+};
+
+class ellipse : public quad {
+  // The ellipse class represents an elliptical surface.
+ public:
+    ellipse(
+        const point3& center, const vec3& side_A, const vec3& side_B, shared_ptr<material> m
+        ) : quad(center, side_A, side_B, std::move(m))
+        {}  // The ellipse is a quad with a center and two axes.
+
+    virtual void set_bounding_box() override {
+      // Compute the bounding box of the ellipse
+      bbox = AABB(Q - u - v, Q + u + v);
+    }
+
+    virtual bool is_interior(double a, double b, hit_record& rec) const override {
+      if ((a * a + b * b) > 1)
+        return false;
+
+      rec.u = a/2 + 0.5;
+      rec.v = b/2 + 0.5;
+      return true;
+    }
+};
+
+class annulus : public quad {
+  // The annulus class represents an annular surface.
+ public:
+  annulus(
+      const point3& center, const vec3& side_A, const vec3& side_B, double _inner,
+      shared_ptr<material> m)
+      : quad(center, side_A, side_B, std::move(m)), inner(_inner)
+      {}
+
+  virtual void set_bounding_box() override {
+    // Compute the bounding box of the annulus.
+    bbox = AABB(Q - u - v, Q + u + v);
+  }
+
+  virtual bool is_interior(double a, double b, hit_record& rec) const override {
+    if ((a * a + b * b) > 1 || (a * a + b * b) < inner * inner)
+      return false;
+
+    rec.u = a / 2 + 0.5;
+    rec.v = b / 2 + 0.5;
+    return true;
+  }
+
+ private:
+  double inner; // The inner radius of the annulus.
+};
 #endif //RAYTRACINGINONEWEEKEND_INCLUDE_QUAD_H_

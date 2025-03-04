@@ -242,6 +242,50 @@ void quads() {
   cam.render(world);
 }
 
+void quad_test() {
+  // World
+  hittable_list world;
+
+  // Materials
+  auto red   = make_shared<lambertian>(color(0.65, 0.05, 0.05));
+  auto green = make_shared<lambertian>(color(0.12, 0.45, 0.15));
+  auto white = make_shared<lambertian>(color(0.73, 0.73, 0.73));
+  auto light = make_shared<diffuse_light>(color(15, 15, 15));
+
+  // Quads
+  world.add(make_shared<quad>(point3(-2,-1,0), vec3(4,0,0),
+                              vec3(0,2,0), light));
+  world.add(make_shared<tri>(point3(3, 2, 0), vec3(4, 0, 0),
+                             vec3(0, 2, 0), light));
+  world.add(make_shared<ellipse>(point3(2, -5, 0), vec3(4, 0, 0),
+                                 vec3(0, -2, 0), light));
+  world.add(make_shared<annulus>(point3(5, 5, 0), vec3(2, 0, 0),
+                                 vec3(0, 1, 0), 0.60, light));
+
+
+  // BVH Acceleration
+  world = hittable_list(make_shared<bvh_node>(world));
+
+  // Camera
+  camera cam;
+
+  cam.aspect_ratio      = 1.0;
+  cam.image_width       = 600;
+  cam.samples_per_pixel = 200;
+  cam.max_depth         = 50;
+  cam.background_color  = color(0, 0, 0);
+
+  cam.vfov              = 80;
+  cam.lookfrom          = point3(0, 0, 9);
+  cam.lookat            = point3(0, 0, 0);
+  cam.vup               = vec3(0, 1, 0);
+
+  cam.defocus_angle     = 0;
+
+  // Render
+  cam.render(world);
+}
+
 void simple_light() {
   // World
   hittable_list world;
@@ -499,11 +543,12 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
   cam.render(world);
 }
 
+
 int main() {
     // time
     auto start_time = std::chrono::high_resolution_clock::now();
 
-  switch (9) {
+  switch (6) {
     // Choose the scene to render.
     case 1: // Bouncing Spheres
       bouncing_spheres();
@@ -520,16 +565,19 @@ int main() {
     case 5: // Quads
         quads();
         break;
-    case 6: // A simple rectangle light
+    case 6: // Quad Test
+        quad_test();
+        break;
+    case 7: // A simple rectangle light
         simple_light();
         break;
-    case 7: // Cornell Box
+    case 8: // Cornell Box
         cornell_box();
         break;
-    case 8: // Cornell Box with Smoke
+    case 9: // Cornell Box with Smoke
         cornell_smoke();
         break;
-    case 9: // Final Scene
+    case 10: // Final Scene
         final_scene(800, 10000, 40);
         break;
     default: // Final Scene
