@@ -50,4 +50,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/RayTracingInOneWeekend.dir/DependInfo.cmake"
+  "CMakeFiles/pi.dir/DependInfo.cmake"
+  "CMakeFiles/estimate_halfway.dir/DependInfo.cmake"
+  "CMakeFiles/integrate_x_sq.dir/DependInfo.cmake"
+  "CMakeFiles/sphere_importance.dir/DependInfo.cmake"
+  "CMakeFiles/sphere_plot.dir/DependInfo.cmake"
+  "CMakeFiles/cos_cubed.dir/DependInfo.cmake"
+  "CMakeFiles/cos_density.dir/DependInfo.cmake"
   )

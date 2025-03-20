@@ -12,8 +12,6 @@
 #ifndef RAYTRACINGINONEWEEKEND_INCLUDE_QUAD_H_
 #define RAYTRACINGINONEWEEKEND_INCLUDE_QUAD_H_
 
-#include <utility>
-
 #include "rtweekend.h"
 
 #include "hittable.h"
@@ -28,6 +26,8 @@ public:
       normal = unit_vector(n);
       D = dot(Q, normal);
       w = n / dot(n, n);
+
+      area = n.length();
 
       set_bounding_box();
     }
@@ -86,6 +86,27 @@ public:
     return true;
   }
 
+  [[nodiscard]] double pdf_value(const point3& origin, const vec3& direction) const override {
+    hit_record rec;
+    // Try to hit the surface from the given origin along the given direction
+    if (!hit(ray(origin, direction), interval(0.001, infinity), rec))
+        return 0;  // Return 0 if no hit occurs
+
+    // Calculate the squared distance from origin to hit point
+    auto distance_squared = rec.t * rec.t * direction.length_squared();
+    // Calculate the absolute cosine of the angle between direction and surface normal
+    auto cosine = std::fabs(dot(direction, rec.normal) / direction.length());
+
+    // important sample the light(quad) with respect to the area
+    // Return PDF value based on the geometry factor: distance² / (cos(θ) * area)
+    return distance_squared / (cosine * area);
+  }
+
+  [[nodiscard]] vec3 random(const vec3& origin) const override {
+    // Generate a random point on the quad.
+    return Q + random_double() * u + random_double() * v - origin;
+  }
+
  protected:
   point3  Q;      // The origin of the quadrilateral surface.
   vec3    u;      // The first axis of the quadrilateral surface.
@@ -93,6 +114,7 @@ public:
   vec3    w;      // w = n/n·n
   vec3    normal; // The normal of the quadrilateral surface.
   double  D;      // Ax + By + Cz = D
+  double  area;   // The surface area of the quadrilateral, calculated as the length of the cross product of u and v vectors
   AABB    bbox;   // The bounding box of the quadrilateral surface.
   shared_ptr<material> mat_ptr; // The material of the quadrilateral surface.
 };

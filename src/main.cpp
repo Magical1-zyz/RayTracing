@@ -23,6 +23,7 @@
 #include "texture.h"
 
 #include <chrono>
+#include <iomanip>
 
 void bouncing_spheres() {
   // World
@@ -49,7 +50,8 @@ void bouncing_spheres() {
           sphere_material = make_shared<lambertian>(albedo);
           // Sphere movement
           auto center2 = center + vec3(0, random_double(0, 0.5), 0);
-          world.add(make_shared<sphere>(center, center2, 0.2, sphere_material));
+          world.add(make_shared<sphere>(center, center2,
+                                        0.2, sphere_material));
         } else if (choose_mat < 0.95) {
           // Metal
           auto albedo = color::random(0.5, 1);
@@ -67,23 +69,33 @@ void bouncing_spheres() {
 
   // Three Large Spheres
   auto material1 = make_shared<dielectric>(1.5);
-  world.add(make_shared<sphere>(point3(0, 1, 0), 1.0, material1));
+  world.add(make_shared<sphere>(point3(0, 1, 0),
+                                1.0, material1));
 
-  auto material2 = make_shared<lambertian>(color(0.4, 0.2, 0.1));
-  world.add(make_shared<sphere>(point3(-4, 1, 0), 1.0, material2));
+  auto material2 = make_shared<lambertian>(
+      color(0.4, 0.2, 0.1));
+  world.add(make_shared<sphere>(point3(-4, 1, 0),
+                                1.0, material2));
 
-  auto material3 = make_shared<metal>(color(0.7, 0.6, 0.5), 0.0);
-  world.add(make_shared<sphere>(point3(4, 1, 0), 1.0, material3));
+  auto material3 = make_shared<metal>(
+      color(0.7, 0.6, 0.5), 0.0);
+  world.add(make_shared<sphere>(point3(4, 1, 0),
+                                1.0, material3));
 
   // BVH Acceleration
   world = hittable_list(make_shared<bvh_node>(world));
+
+  // Light source
+  auto empty_material = shared_ptr<material>();
+  quad light = quad(point3(0, 0, 0),vec3(675, 0, 0),
+                    vec3(0, 1200, 0),empty_material);
 
   // Camera
   camera cam;
 
   cam.aspect_ratio = 16.0 / 9.0;
   cam.image_width = 1200;
-  cam.samples_per_pixel = 100;
+  cam.samples_per_pixel = 10000;
   cam.max_depth = 50;
   cam.background_color  = color(0.70, 0.80, 1.00);
 
@@ -96,7 +108,7 @@ void bouncing_spheres() {
   cam.focus_dist = 10.0;
 
   // Render
-  cam.render(world);
+  cam.render(world, light);
 }
 
 void checkered_spheres() {
@@ -135,7 +147,7 @@ void checkered_spheres() {
 
 
   // Render
-  cam.render(world);
+  cam.render(world, world);
 }
 
 void earth() {
@@ -162,7 +174,7 @@ void earth() {
 
   cam.defocus_angle     = 0;
 
-  cam.render(hittable_list(globe));
+  cam.render(hittable_list(globe), hittable_list(globe));
 }
 
 void perlin_spheres() {
@@ -194,7 +206,7 @@ void perlin_spheres() {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, world);
 }
 
 void quads() {
@@ -239,7 +251,7 @@ void quads() {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, world);
 }
 
 void quad_test() {
@@ -283,7 +295,7 @@ void quad_test() {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, world);
 }
 
 void simple_light() {
@@ -320,7 +332,7 @@ void simple_light() {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, world);
 }
 
 void cornell_box() {
@@ -354,11 +366,19 @@ void cornell_box() {
   box1 = make_shared<translate>(box1, vec3(265, 0, 295));
   world.add(box1);
 
-  shared_ptr<hittable> box2 = box(point3(0, 0, 0),
-                                  point3(165, 165, 165), white);
-  box2 = make_shared<rotate_y>(box2, -18);
-  box2 = make_shared<translate>(box2, vec3(130, 0, 65));
-  world.add(box2);
+  // Glass Sphere
+  auto glass = make_shared<dielectric>(1.5);
+  world.add(make_shared<sphere>(point3(190, 90, 190),
+                                90, glass));
+
+  // Light Sources
+  auto empty_material = shared_ptr<material>();
+  hittable_list lights;
+  lights.add(make_shared<quad>(point3(343, 554, 332),
+                               vec3(-130, 0, 0),vec3(0, 0, -105),
+                               empty_material));
+  lights.add(make_shared<sphere>(point3(190, 90, 190),
+                                 90, empty_material));
 
   // BVH Acceleration
   world = hittable_list(make_shared<bvh_node>(world));
@@ -368,7 +388,7 @@ void cornell_box() {
 
   cam.aspect_ratio      = 1.0;
   cam.image_width       = 600;
-  cam.samples_per_pixel = 200;
+  cam.samples_per_pixel = 1000;
   cam.max_depth         = 50;
   cam.background_color  = color(0, 0, 0);
 
@@ -380,7 +400,7 @@ void cornell_box() {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, lights);
 }
 
 void cornell_smoke() {
@@ -408,8 +428,9 @@ void cornell_smoke() {
                               vec3(0, 555, 0), white)); // back
 
   // boxes
+  shared_ptr<material> aluminum = make_shared<metal>(color(0.8, 0.85, 0.88), 0.0);
   shared_ptr<hittable> box1 = box(point3(0, 0, 0),
-                                  point3(165, 330, 165), white);
+                                  point3(165, 330, 165), aluminum);
   box1 = make_shared<rotate_y>(box1, 15);
   box1 = make_shared<translate>(box1, vec3(265, 0, 295));
 
@@ -422,6 +443,11 @@ void cornell_smoke() {
                                          color(0, 0, 0)));
   world.add(make_shared<constant_medium>(box2, 0.01,
                                          color(1, 1, 1)));
+
+  // Light Sources
+  auto empty_material = shared_ptr<material>();
+  quad lights(point3(343, 554, 332), vec3(-130, 0, 0),
+              vec3(0, 0, -105), empty_material);
 
   // BVH Acceleration
   world = hittable_list(make_shared<bvh_node>(world));
@@ -443,7 +469,7 @@ void cornell_smoke() {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, lights);
 }
 
 void final_scene(int image_width, int samples_per_pixel, int max_depth) {
@@ -523,6 +549,11 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
           make_shared<bvh_node>(boxes2), 15),
           vec3(-100, 270, 395)));
 
+  // Light Sources
+  auto empty_material = shared_ptr<material>();
+  quad lights(point3(123, 554, 147), vec3(412, 0, 0),
+              vec3(0, 0, 412), empty_material);
+
   // Camera
   camera cam;
 
@@ -540,7 +571,7 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
   cam.defocus_angle     = 0;
 
   // Render
-  cam.render(world);
+  cam.render(world, lights);
 }
 
 
@@ -548,7 +579,7 @@ int main() {
     // time
     auto start_time = std::chrono::high_resolution_clock::now();
 
-  switch (6) {
+  switch (3) {
     // Choose the scene to render.
     case 1: // Bouncing Spheres
       bouncing_spheres();
@@ -591,3 +622,4 @@ int main() {
     std::clog << "Elapsed time: " << elapsed_time.count() << "s\n";
 
 }
+

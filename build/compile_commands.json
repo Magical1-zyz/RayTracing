@@ -4,5 +4,47 @@
   "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/RayTracingInOneWeekend.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\RayTracingInOneWeekend.dir\\src\\main.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\main.cpp",
   "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/main.cpp",
   "output": "CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/pi.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\pi.dir\\src\\pi.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\pi.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/pi.cpp",
+  "output": "CMakeFiles/pi.dir/src/pi.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/estimate_halfway.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\estimate_halfway.dir\\src\\estimate_halfway.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\estimate_halfway.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/estimate_halfway.cpp",
+  "output": "CMakeFiles/estimate_halfway.dir/src/estimate_halfway.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/integrate_x_sq.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\integrate_x_sq.dir\\src\\integrate_x_sq.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\integrate_x_sq.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/integrate_x_sq.cpp",
+  "output": "CMakeFiles/integrate_x_sq.dir/src/integrate_x_sq.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/sphere_importance.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\sphere_importance.dir\\src\\sphere_importance.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\sphere_importance.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/sphere_importance.cpp",
+  "output": "CMakeFiles/sphere_importance.dir/src/sphere_importance.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/sphere_plot.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\sphere_plot.dir\\src\\sphere_plot.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\sphere_plot.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/sphere_plot.cpp",
+  "output": "CMakeFiles/sphere_plot.dir/src/sphere_plot.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/cos_cubed.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\cos_cubed.dir\\src\\cos_cubed.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\cos_cubed.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/cos_cubed.cpp",
+  "output": "CMakeFiles/cos_cubed.dir/src/cos_cubed.cpp.obj"
+},
+{
+  "directory": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/build",
+  "command": "C:\\Software\\MinGW\\bin\\g++.exe  @CMakeFiles/cos_density.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\cos_density.dir\\src\\cos_density.cpp.obj -c E:\\Code_learn\\C++Learn\\RayTracingInOneWeekend\\src\\cos_density.cpp",
+  "file": "E:/Code_learn/C++Learn/RayTracingInOneWeekend/src/cos_density.cpp",
+  "output": "CMakeFiles/cos_density.dir/src/cos_density.cpp.obj"
 }
 ]

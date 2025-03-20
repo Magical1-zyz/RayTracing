@@ -18,7 +18,6 @@
 
 #include "hittable.h"
 
-#include <utility>
 
 class sphere : public hittable {
 public:
@@ -31,6 +30,7 @@ public:
         auto rvec = vec3(radius, radius, radius);
         bbox = AABB(static_center - rvec, static_center + rvec);
     };
+
     // Moving Sphere
     sphere(const point3& center1, const point3& center2, double radius,
            shared_ptr<material> mat)
@@ -80,8 +80,41 @@ public:
         return true;
     }
 
-    AABB bounding_box() const override {
+    [[nodiscard]] AABB bounding_box() const override {
         return bbox;
+    }
+
+    // Calculate the probability density function (PDF) value for a given ray direction
+    // relative to a point in space.
+    [[nodiscard]] double pdf_value(const point3& origin, const vec3& direction) const override {
+        // Create a temporary hit record and check if the ray hits the sphere
+        hit_record rec;
+        if (!this->hit(ray(origin, direction), interval(0.001, infinity), rec))
+            return 0;
+
+        // Calculate the squared distance from the origin to the sphere center
+        auto dist_squared = (center.at(0) - origin).length_squared();
+
+        // Calculate the cosine of the maximum angle between the ray and sphere center
+        auto cos_theta_max = std::sqrt(1 - radius*radius / dist_squared);
+
+        // Calculate the solid angle subtended by the sphere from the origin point
+        auto solid_angle = 2*pi*(1 - cos_theta_max);
+
+        // Return the reciprocal of the solid angle as the PDF value
+        return 1 / solid_angle;
+    }
+
+    // Generate a random direction vector pointing from the origin towards the sphere
+    [[nodiscard]] vec3 random(const point3& origin) const override {
+        // Calculate direction from origin to sphere center
+        vec3 direction = center.at(0) - origin;
+        // Calculate squared distance between origin and sphere center
+        auto distance_squared = direction.length_squared();
+        // Create orthonormal basis aligned with direction to sphere
+        onb uvw(direction);
+        // Generate and transform random direction vector weighted by solid angle
+        return uvw.transform(random_to_sphere(radius, distance_squared));
     }
 private:
     // Data
@@ -104,6 +137,30 @@ private:
 
         u = phi / (2*pi);
         v = theta / pi;
+    }
+
+    // Helper function to generate a random direction vector towards a sphere
+    // radius: The radius of the sphere
+    // distance_squared: The squared distance from the sampling point to sphere center
+    static vec3 random_to_sphere(double radius, double distance_squared) {
+        // Generate two random numbers between 0 and 1
+        auto r1 = random_double();
+        auto r2 = random_double();
+
+        // Calculate z-coordinate based on sphere radius and distance
+        // This ensures proper weighting of random points based on solid angle
+        auto z = 1 + r2 * (std::sqrt(1 - radius*radius / distance_squared) - 1);
+
+        // Generate random angle phi in [0, 2π]
+        auto phi = 2 * pi * r1;
+
+        // Calculate x and y coordinates using spherical coordinates
+        // sqrt(1-z*z) represents the radius of the circle at height z
+        auto x = std::cos(phi) * std::sqrt(1 - z*z);
+        auto y = std::sin(phi) * std::sqrt(1 - z*z);
+
+        // Return the normalized direction vector
+        return {x, y, z};
     }
 };
 #endif //RAYTRACINGINONEWEEKEND_SPHERE_H

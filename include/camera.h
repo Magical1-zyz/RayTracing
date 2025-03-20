@@ -14,7 +14,10 @@
 #ifndef RAYTRACINGINONEWEEKEND_CAMERA_H
 #define RAYTRACINGINONEWEEKEND_CAMERA_H
 
+#include "rtweekend.h"
+
 #include "hittable.h"
+#include "pdf.h"
 #include "material.h"
 
 class camera {
@@ -35,7 +38,7 @@ public:
 
 
     // Render the world
-    void render (const hittable& world) {
+    void render (const hittable& world, const hittable& lights) {
         initialize();
 
         // Render
@@ -46,10 +49,12 @@ public:
             std::clog << "\rScanlines remaining: " << (image_height - j) << "\n"  << std::flush;
             for (int i = 0; i < image_width; i++) {
                 color pixel_color(0, 0, 0);
-                for (int sample = 0; sample < samples_per_pixel; ++sample) {
-                    ray r = get_ray(i, j);
-                    pixel_color += ray_color(r, max_depth, world);
+              for (int s_j = 0; s_j < sqrt_spp; ++s_j) {
+                for (int s_i = 0; s_i < sqrt_spp; ++s_i) {
+                  ray r = get_ray(i, j, s_i, s_j);
+                  pixel_color += ray_color(r, max_depth, world, lights);
                 }
+              }
                 write_color(std::cout, pixel_samples_scale*pixel_color);
             }
         }
@@ -58,8 +63,10 @@ public:
     }
 
 private:
-    int     image_height;           // Rendered image height
-    double  pixel_samples_scale;    // Color scale factor for a sum of pixel samples
+    int     image_height{};           // Rendered image height
+    double  pixel_samples_scale{};    // Color scale factor for a sum of pixel samples
+    int     sqrt_spp{};               // Square root of samples per pixel
+    double  recip_sqrt_spp{};         // Reciprocal of the square root of samples per pixel: 1/sqrt_spp
     point3  center;                 // Camera center
     point3  pixel00_loc;            // Location of the upper left pixel
     vec3    pixel_delta_u;          // Horizontal delta vector from pixel to pixel
@@ -75,7 +82,9 @@ private:
         image_height = int (image_width / aspect_ratio);
         image_height = (image_height < 1) ? 1 : image_height;
 
-        pixel_samples_scale = 1.0 / samples_per_pixel;
+        sqrt_spp = int(std::sqrt(samples_per_pixel));
+        pixel_samples_scale = 1.0 / (sqrt_spp * sqrt_spp);
+        recip_sqrt_spp = 1.0 / sqrt_spp;
 
         center = lookfrom;
 
@@ -110,11 +119,12 @@ private:
         defocus_disk_v = defocus_radius * v;
     }
 
-    ray get_ray(int i, int j) const {
+    [[nodiscard]] ray get_ray(int i, int j, int s_i, int s_j) const {
         // Construct a camera ray origination from the defocus disk and directed at
-        // a randomly sampled point around the pixel location i, j.
+        // a randomly sampled point around the pixel location i, j for stratified
+        // sample square s_i, s_j.
 
-        auto offset = sample_square();
+        auto offset = sample_square_stratified(s_i, s_j);
         auto pixel_sample = pixel00_loc
                 + ((i + offset.x()) * pixel_delta_u)
                 + ((j + offset.y()) * pixel_delta_v);
@@ -126,58 +136,81 @@ private:
         return {ray_origin, ray_direction, ray_time};
     }
 
-    vec3 sample_square() const {
+    [[nodiscard]] vec3 sample_square_stratified(int s_i, int s_j) const {
+        // Returns the vector to a random point in the square sub-pixel specified by grid
+        // indices s_i and s_j, for an idealized unit square pixel [-.5,-.5] - [+.5,+.5].
+
+        auto px = ((s_i + random_double()) * recip_sqrt_spp) - 0.5;
+        auto py = ((s_j + random_double()) * recip_sqrt_spp) - 0.5;
+
+        return {px, py, 0};
+    }
+
+    [[nodiscard]] vec3 sample_square() const {
         // Returns the vector to a random point in the [-.5, -.5] - [+.5, +.5] unit square.
         return {random_double() - 0.5, random_double() - 0.5, 0};
     }
 
-    point3 defocus_disk_sample() const {
+    [[nodiscard]] point3 defocus_disk_sample() const {
         // Returns a point on the camera defocus disk.
         auto p = random_in_unit_disk();
         return center + (p[0] * defocus_disk_u) + (p[1] * defocus_disk_v);
     }
 
-    color ray_color(const ray& r, int depth, const hittable& world) {
-        // The ray_color function takes a ray as an argument and returns a color.
+    [[nodiscard]] color ray_color(
+      const ray& r, int depth, const hittable& world, const hittable& lights) const {
+      // The ray_color function takes a ray as an argument and returns a color.
 
-        // If we've exceeded the ray bounce limit, no more light is gathered.
-        if (depth <= 0)
+      // If we've exceeded the ray bounce limit, no more light is gathered.
+      if (depth <= 0)
             return {0, 0, 0};
 
-        hit_record rec;
+      hit_record rec;
 
-        // If the ray hits nothing, return the background color.
-        if (!world.hit(r, interval(0.001, infinity), rec))
-            return background_color;
-        else{
-          // If the ray hits a light-emitting material, return the emitted light.
-          ray scattered;
-          color attenuation;
-          color color_from_emission = rec.mat->emitted(rec.u, rec.v, rec.p);
+      // If the ray hits nothing, return the background color.
+      if (!world.hit(r, interval(0.001, infinity), rec))
+          return background_color;
 
-          if (!rec.mat->scatter(r, rec, attenuation, scattered))
-              // If the ray is absorbed, return the emitted light.
-              return color_from_emission;
-          else
-              // If the ray is scattered, return the scattered ray color and the emitted light.
-              return color_from_emission + attenuation * ray_color(scattered, depth - 1, world);
-        }
-        // If the ray hits a sphere, return the normal vector as a color.
-            ray scattered;
-            color attenuation;
+      // Create a scatter record to store scattering information
+      scatter_record srec;
 
-            // If the ray is scattered, return the scattered ray color.
-            if (rec.mat->scatter(r, rec, attenuation, scattered))
-                return attenuation * ray_color(scattered, depth - 1, world);
+      // Get the emitted color from the material at the hit point
+      color color_from_emission = rec.mat->emitted(r, rec, rec.u, rec.v, rec.p);
 
-            return {0, 0, 0};
+      // If the material does not scatter the ray, return the emitted color
+      if (!rec.mat->scatter(r, rec, srec))
+        return color_from_emission;
 
+      // If the PDF should be skipped, recursively get the color from the scattered ray
+      // using the precomputed scattered ray in the scatter record.
+      if (srec.skip_pdf)
+        return srec.attenuation * ray_color(srec.skip_pdf_ray, depth - 1, world, lights);
 
-        // Otherwise, return the background color.
-        vec3 unit_direction = unit_vector(r.direction());
-        // unit_direction.y() is in the range [-1,1]
-        auto a = 0.5 * (unit_direction.y() + 1.0);
-        return (1.0 - a) * color(1.0, 1.0, 1.0) + a * color(0.5, 0.7, 1.0);
+      // Create a PDF for sampling light sources
+      auto light_ptr =
+          make_shared<hittable_pdf>(lights, rec.p);
+
+      // Combine the light source PDF with the material's scattering PDF
+      mixture_pdf p(light_ptr, srec.pdf_ptr);
+
+      // Generate a scattered ray using the combined PDF
+      ray scattered = ray(rec.p, p.generate(), r.time());
+
+      // Calculate the PDF value for the scattered direction
+      auto pdf_value = p.value(scattered.direction());
+
+      // Calculate the scattering PDF value for the scattered direction
+      double scattering_pdf = rec.mat->scattering_pdf(r, rec, scattered);
+
+      // Recursively get the color from the scattered ray
+      color sample_color = ray_color(scattered, depth - 1, world, lights);
+
+      // Calculate the color contribution from scattering
+      color color_from_scatter =
+          (srec.attenuation * scattering_pdf * sample_color) / pdf_value;
+
+      // If the ray is scattered, return the scattered ray color and the emitted light.
+      return color_from_emission + color_from_scatter;
     }
 };
 #endif //RAYTRACINGINONEWEEKEND_CAMERA_H

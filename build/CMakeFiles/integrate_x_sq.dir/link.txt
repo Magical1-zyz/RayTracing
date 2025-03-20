@@ -1,0 +1,3 @@
+F:\Software\Science\CMake\bin\cmake.exe -E rm -f CMakeFiles\integrate_x_sq.dir/objects.a
+C:\Software\MinGW\bin\ar.exe qc CMakeFiles\integrate_x_sq.dir/objects.a @CMakeFiles\integrate_x_sq.dir\objects1.rsp
+C:\Software\MinGW\bin\g++.exe -O3 -DNDEBUG -static -Wl,--whole-archive CMakeFiles\integrate_x_sq.dir/objects.a -Wl,--no-whole-archive -o E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\integrate_x_sq.exe -Wl,--out-implib,libintegrate_x_sq.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\integrate_x_sq.dir\linkLibs.rsp

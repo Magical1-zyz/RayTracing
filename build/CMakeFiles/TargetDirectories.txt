@@ -1,3 +1,10 @@
 E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/RayTracingInOneWeekend.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/pi.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/estimate_halfway.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/integrate_x_sq.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/sphere_importance.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/sphere_plot.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/cos_cubed.dir
+E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/cos_density.dir
 E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/edit_cache.dir
 E:/Code_learn/C++Learn/RayTracingInOneWeekend/build/CMakeFiles/rebuild_cache.dir

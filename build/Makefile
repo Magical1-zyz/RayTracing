@@ -128,6 +128,193 @@ RayTracingInOneWeekend/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RayTracingInOneWeekend.dir\build.make CMakeFiles/RayTracingInOneWeekend.dir/build
 .PHONY : RayTracingInOneWeekend/fast
 
+#=============================================================================
+# Target rules for targets named pi
+
+# Build rule for target.
+pi: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 pi
+.PHONY : pi
+
+# fast build rule for target.
+pi/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/build
+.PHONY : pi/fast
+
+#=============================================================================
+# Target rules for targets named estimate_halfway
+
+# Build rule for target.
+estimate_halfway: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 estimate_halfway
+.PHONY : estimate_halfway
+
+# fast build rule for target.
+estimate_halfway/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\estimate_halfway.dir\build.make CMakeFiles/estimate_halfway.dir/build
+.PHONY : estimate_halfway/fast
+
+#=============================================================================
+# Target rules for targets named integrate_x_sq
+
+# Build rule for target.
+integrate_x_sq: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 integrate_x_sq
+.PHONY : integrate_x_sq
+
+# fast build rule for target.
+integrate_x_sq/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\integrate_x_sq.dir\build.make CMakeFiles/integrate_x_sq.dir/build
+.PHONY : integrate_x_sq/fast
+
+#=============================================================================
+# Target rules for targets named sphere_importance
+
+# Build rule for target.
+sphere_importance: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sphere_importance
+.PHONY : sphere_importance
+
+# fast build rule for target.
+sphere_importance/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_importance.dir\build.make CMakeFiles/sphere_importance.dir/build
+.PHONY : sphere_importance/fast
+
+#=============================================================================
+# Target rules for targets named sphere_plot
+
+# Build rule for target.
+sphere_plot: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sphere_plot
+.PHONY : sphere_plot
+
+# fast build rule for target.
+sphere_plot/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_plot.dir\build.make CMakeFiles/sphere_plot.dir/build
+.PHONY : sphere_plot/fast
+
+#=============================================================================
+# Target rules for targets named cos_cubed
+
+# Build rule for target.
+cos_cubed: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cos_cubed
+.PHONY : cos_cubed
+
+# fast build rule for target.
+cos_cubed/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_cubed.dir\build.make CMakeFiles/cos_cubed.dir/build
+.PHONY : cos_cubed/fast
+
+#=============================================================================
+# Target rules for targets named cos_density
+
+# Build rule for target.
+cos_density: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cos_density
+.PHONY : cos_density
+
+# fast build rule for target.
+cos_density/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_density.dir\build.make CMakeFiles/cos_density.dir/build
+.PHONY : cos_density/fast
+
+src/cos_cubed.obj: src/cos_cubed.cpp.obj
+.PHONY : src/cos_cubed.obj
+
+# target to build an object file
+src/cos_cubed.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_cubed.dir\build.make CMakeFiles/cos_cubed.dir/src/cos_cubed.cpp.obj
+.PHONY : src/cos_cubed.cpp.obj
+
+src/cos_cubed.i: src/cos_cubed.cpp.i
+.PHONY : src/cos_cubed.i
+
+# target to preprocess a source file
+src/cos_cubed.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_cubed.dir\build.make CMakeFiles/cos_cubed.dir/src/cos_cubed.cpp.i
+.PHONY : src/cos_cubed.cpp.i
+
+src/cos_cubed.s: src/cos_cubed.cpp.s
+.PHONY : src/cos_cubed.s
+
+# target to generate assembly for a file
+src/cos_cubed.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_cubed.dir\build.make CMakeFiles/cos_cubed.dir/src/cos_cubed.cpp.s
+.PHONY : src/cos_cubed.cpp.s
+
+src/cos_density.obj: src/cos_density.cpp.obj
+.PHONY : src/cos_density.obj
+
+# target to build an object file
+src/cos_density.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_density.dir\build.make CMakeFiles/cos_density.dir/src/cos_density.cpp.obj
+.PHONY : src/cos_density.cpp.obj
+
+src/cos_density.i: src/cos_density.cpp.i
+.PHONY : src/cos_density.i
+
+# target to preprocess a source file
+src/cos_density.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_density.dir\build.make CMakeFiles/cos_density.dir/src/cos_density.cpp.i
+.PHONY : src/cos_density.cpp.i
+
+src/cos_density.s: src/cos_density.cpp.s
+.PHONY : src/cos_density.s
+
+# target to generate assembly for a file
+src/cos_density.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cos_density.dir\build.make CMakeFiles/cos_density.dir/src/cos_density.cpp.s
+.PHONY : src/cos_density.cpp.s
+
+src/estimate_halfway.obj: src/estimate_halfway.cpp.obj
+.PHONY : src/estimate_halfway.obj
+
+# target to build an object file
+src/estimate_halfway.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\estimate_halfway.dir\build.make CMakeFiles/estimate_halfway.dir/src/estimate_halfway.cpp.obj
+.PHONY : src/estimate_halfway.cpp.obj
+
+src/estimate_halfway.i: src/estimate_halfway.cpp.i
+.PHONY : src/estimate_halfway.i
+
+# target to preprocess a source file
+src/estimate_halfway.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\estimate_halfway.dir\build.make CMakeFiles/estimate_halfway.dir/src/estimate_halfway.cpp.i
+.PHONY : src/estimate_halfway.cpp.i
+
+src/estimate_halfway.s: src/estimate_halfway.cpp.s
+.PHONY : src/estimate_halfway.s
+
+# target to generate assembly for a file
+src/estimate_halfway.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\estimate_halfway.dir\build.make CMakeFiles/estimate_halfway.dir/src/estimate_halfway.cpp.s
+.PHONY : src/estimate_halfway.cpp.s
+
+src/integrate_x_sq.obj: src/integrate_x_sq.cpp.obj
+.PHONY : src/integrate_x_sq.obj
+
+# target to build an object file
+src/integrate_x_sq.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\integrate_x_sq.dir\build.make CMakeFiles/integrate_x_sq.dir/src/integrate_x_sq.cpp.obj
+.PHONY : src/integrate_x_sq.cpp.obj
+
+src/integrate_x_sq.i: src/integrate_x_sq.cpp.i
+.PHONY : src/integrate_x_sq.i
+
+# target to preprocess a source file
+src/integrate_x_sq.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\integrate_x_sq.dir\build.make CMakeFiles/integrate_x_sq.dir/src/integrate_x_sq.cpp.i
+.PHONY : src/integrate_x_sq.cpp.i
+
+src/integrate_x_sq.s: src/integrate_x_sq.cpp.s
+.PHONY : src/integrate_x_sq.s
+
+# target to generate assembly for a file
+src/integrate_x_sq.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\integrate_x_sq.dir\build.make CMakeFiles/integrate_x_sq.dir/src/integrate_x_sq.cpp.s
+.PHONY : src/integrate_x_sq.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -152,6 +339,78 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RayTracingInOneWeekend.dir\build.make CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/pi.obj: src/pi.cpp.obj
+.PHONY : src/pi.obj
+
+# target to build an object file
+src/pi.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/src/pi.cpp.obj
+.PHONY : src/pi.cpp.obj
+
+src/pi.i: src/pi.cpp.i
+.PHONY : src/pi.i
+
+# target to preprocess a source file
+src/pi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/src/pi.cpp.i
+.PHONY : src/pi.cpp.i
+
+src/pi.s: src/pi.cpp.s
+.PHONY : src/pi.s
+
+# target to generate assembly for a file
+src/pi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/src/pi.cpp.s
+.PHONY : src/pi.cpp.s
+
+src/sphere_importance.obj: src/sphere_importance.cpp.obj
+.PHONY : src/sphere_importance.obj
+
+# target to build an object file
+src/sphere_importance.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_importance.dir\build.make CMakeFiles/sphere_importance.dir/src/sphere_importance.cpp.obj
+.PHONY : src/sphere_importance.cpp.obj
+
+src/sphere_importance.i: src/sphere_importance.cpp.i
+.PHONY : src/sphere_importance.i
+
+# target to preprocess a source file
+src/sphere_importance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_importance.dir\build.make CMakeFiles/sphere_importance.dir/src/sphere_importance.cpp.i
+.PHONY : src/sphere_importance.cpp.i
+
+src/sphere_importance.s: src/sphere_importance.cpp.s
+.PHONY : src/sphere_importance.s
+
+# target to generate assembly for a file
+src/sphere_importance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_importance.dir\build.make CMakeFiles/sphere_importance.dir/src/sphere_importance.cpp.s
+.PHONY : src/sphere_importance.cpp.s
+
+src/sphere_plot.obj: src/sphere_plot.cpp.obj
+.PHONY : src/sphere_plot.obj
+
+# target to build an object file
+src/sphere_plot.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_plot.dir\build.make CMakeFiles/sphere_plot.dir/src/sphere_plot.cpp.obj
+.PHONY : src/sphere_plot.cpp.obj
+
+src/sphere_plot.i: src/sphere_plot.cpp.i
+.PHONY : src/sphere_plot.i
+
+# target to preprocess a source file
+src/sphere_plot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_plot.dir\build.make CMakeFiles/sphere_plot.dir/src/sphere_plot.cpp.i
+.PHONY : src/sphere_plot.cpp.i
+
+src/sphere_plot.s: src/sphere_plot.cpp.s
+.PHONY : src/sphere_plot.s
+
+# target to generate assembly for a file
+src/sphere_plot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sphere_plot.dir\build.make CMakeFiles/sphere_plot.dir/src/sphere_plot.cpp.s
+.PHONY : src/sphere_plot.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,9 +420,37 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... RayTracingInOneWeekend
+	@echo ... cos_cubed
+	@echo ... cos_density
+	@echo ... estimate_halfway
+	@echo ... integrate_x_sq
+	@echo ... pi
+	@echo ... sphere_importance
+	@echo ... sphere_plot
+	@echo ... src/cos_cubed.obj
+	@echo ... src/cos_cubed.i
+	@echo ... src/cos_cubed.s
+	@echo ... src/cos_density.obj
+	@echo ... src/cos_density.i
+	@echo ... src/cos_density.s
+	@echo ... src/estimate_halfway.obj
+	@echo ... src/estimate_halfway.i
+	@echo ... src/estimate_halfway.s
+	@echo ... src/integrate_x_sq.obj
+	@echo ... src/integrate_x_sq.i
+	@echo ... src/integrate_x_sq.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/pi.obj
+	@echo ... src/pi.i
+	@echo ... src/pi.s
+	@echo ... src/sphere_importance.obj
+	@echo ... src/sphere_importance.i
+	@echo ... src/sphere_importance.s
+	@echo ... src/sphere_plot.obj
+	@echo ... src/sphere_plot.i
+	@echo ... src/sphere_plot.s
 .PHONY : help
 
 

@@ -13,8 +13,6 @@
 #ifndef RAYTRACINGINONEWEEKEND_TEXTURE_H
 #define RAYTRACINGINONEWEEKEND_TEXTURE_H
 
-#include <utility>
-
 #include "rtweekend.h"
 
 #include "perlin.h"

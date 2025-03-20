@@ -14,12 +14,14 @@
 #ifndef RAYTRACINGINONEWEEKEND_RTWEEKEND_H
 #define RAYTRACINGINONEWEEKEND_RTWEEKEND_H
 
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
 #include <memory>
 #include <random>
+#include <utility>
 
 // C++ Std Usings
 

@@ -51,7 +51,18 @@ public:
     virtual  ~hittable() = default;
 
     virtual bool hit(const ray& r, interval ray_t, hit_record& rec) const = 0;
-    virtual AABB bounding_box() const = 0;
+
+    [[nodiscard]] virtual AABB bounding_box() const = 0;
+
+    // The pdf_value function returns the probability density function value.
+    [[nodiscard]] virtual double pdf_value(const point3& o, const vec3& v) const {
+        return 0.0;
+    }
+
+    // The random function returns a random direction.
+    [[nodiscard]] virtual vec3 random(const vec3& o) const {
+        return {1, 0, 0};
+    }
 };
 
 class translate : public hittable {
@@ -76,7 +87,7 @@ class translate : public hittable {
     return true;
   }
 
-  AABB bounding_box() const override {
+  [[nodiscard]] AABB bounding_box() const override {
     return bbox;
   }
 
@@ -159,7 +170,7 @@ public:
     return true;
   }
 
-  AABB bounding_box() const override {
+  [[nodiscard]] AABB bounding_box() const override {
     return bbox;
   }
 

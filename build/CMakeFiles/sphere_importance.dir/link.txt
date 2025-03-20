@@ -1,0 +1,3 @@
+F:\Software\Science\CMake\bin\cmake.exe -E rm -f CMakeFiles\sphere_importance.dir/objects.a
+C:\Software\MinGW\bin\ar.exe qc CMakeFiles\sphere_importance.dir/objects.a @CMakeFiles\sphere_importance.dir\objects1.rsp
+C:\Software\MinGW\bin\g++.exe -O3 -DNDEBUG -static -Wl,--whole-archive CMakeFiles\sphere_importance.dir/objects.a -Wl,--no-whole-archive -o E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\sphere_importance.exe -Wl,--out-implib,libsphere_importance.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\sphere_importance.dir\linkLibs.rsp

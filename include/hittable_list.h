@@ -20,9 +20,6 @@
 #include "hittable.h"
 
 
-#include <utility>
-#include <vector>
-
 
 // The hittable_list class stores a list of hittable objects.
 class hittable_list : public hittable {
@@ -55,9 +52,33 @@ public:
         return hit_anything;
     }
 
-    AABB bounding_box() const override {
+    [[nodiscard]] AABB bounding_box() const override {
         return bbox;
     }
+
+    // Calculates the probability density function (PDF) value for a ray from origin
+    // in given direction by averaging the PDF values of all objects in the list.
+    // origin: The starting point of the ray
+    // direction: The direction vector of the ray
+    // Returns: The weighted average of PDF values from all objects
+    [[nodiscard]] double pdf_value(const point3& origin, const vec3& direction) const override {
+      auto weight = 1.0 / objects.size();  // Weight for each object's contribution
+      auto sum = 0.0;  // Accumulator for weighted PDF values
+
+      for (const auto& object : objects)
+          sum += weight * object->pdf_value(origin, direction);
+
+      return sum;
+    }
+
+    // Generates a random direction by randomly selecting an object and using its random direction
+    // origin: The point from which to generate the random direction
+    // Returns: A random direction vector from the selected object
+    [[nodiscard]] vec3 random(const point3& origin) const override {
+      auto int_size = static_cast<int>(objects.size());  // Convert size to int for random selection
+      return objects[random_int(0, int_size - 1)]->random(origin);  // Get random direction from randomly selected object
+    }
+
 private:
     AABB bbox;
 };

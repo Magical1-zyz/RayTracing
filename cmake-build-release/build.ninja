@@ -75,6 +75,251 @@ build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.
   TARGET_IMPLIB = libRayTracingInOneWeekend.dll.a
   TARGET_PDB = RayTracingInOneWeekend.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target pi
+
+
+#############################################
+# Order-only phony target for pi
+
+build cmake_object_order_depends_target_pi: phony || CMakeFiles/pi.dir
+
+build CMakeFiles/pi.dir/src/pi.cpp.obj: CXX_COMPILER__pi_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/pi.cpp || cmake_object_order_depends_target_pi
+  DEP_FILE = CMakeFiles\pi.dir\src\pi.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\pi.dir
+  OBJECT_FILE_DIR = CMakeFiles\pi.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target pi
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\pi.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/pi.exe: CXX_EXECUTABLE_LINKER__pi_Release CMakeFiles/pi.dir/src/pi.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\pi.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\pi.exe
+  TARGET_IMPLIB = libpi.dll.a
+  TARGET_PDB = pi.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target estimate_halfway
+
+
+#############################################
+# Order-only phony target for estimate_halfway
+
+build cmake_object_order_depends_target_estimate_halfway: phony || CMakeFiles/estimate_halfway.dir
+
+build CMakeFiles/estimate_halfway.dir/src/estimate_halfway.cpp.obj: CXX_COMPILER__estimate_halfway_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/estimate_halfway.cpp || cmake_object_order_depends_target_estimate_halfway
+  DEP_FILE = CMakeFiles\estimate_halfway.dir\src\estimate_halfway.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\estimate_halfway.dir
+  OBJECT_FILE_DIR = CMakeFiles\estimate_halfway.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target estimate_halfway
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\estimate_halfway.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/estimate_halfway.exe: CXX_EXECUTABLE_LINKER__estimate_halfway_Release CMakeFiles/estimate_halfway.dir/src/estimate_halfway.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\estimate_halfway.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\estimate_halfway.exe
+  TARGET_IMPLIB = libestimate_halfway.dll.a
+  TARGET_PDB = estimate_halfway.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target integrate_x_sq
+
+
+#############################################
+# Order-only phony target for integrate_x_sq
+
+build cmake_object_order_depends_target_integrate_x_sq: phony || CMakeFiles/integrate_x_sq.dir
+
+build CMakeFiles/integrate_x_sq.dir/src/integrate_x_sq.cpp.obj: CXX_COMPILER__integrate_x_sq_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/integrate_x_sq.cpp || cmake_object_order_depends_target_integrate_x_sq
+  DEP_FILE = CMakeFiles\integrate_x_sq.dir\src\integrate_x_sq.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\integrate_x_sq.dir
+  OBJECT_FILE_DIR = CMakeFiles\integrate_x_sq.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target integrate_x_sq
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\integrate_x_sq.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/integrate_x_sq.exe: CXX_EXECUTABLE_LINKER__integrate_x_sq_Release CMakeFiles/integrate_x_sq.dir/src/integrate_x_sq.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\integrate_x_sq.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\integrate_x_sq.exe
+  TARGET_IMPLIB = libintegrate_x_sq.dll.a
+  TARGET_PDB = integrate_x_sq.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target sphere_importance
+
+
+#############################################
+# Order-only phony target for sphere_importance
+
+build cmake_object_order_depends_target_sphere_importance: phony || CMakeFiles/sphere_importance.dir
+
+build CMakeFiles/sphere_importance.dir/src/sphere_importance.cpp.obj: CXX_COMPILER__sphere_importance_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/sphere_importance.cpp || cmake_object_order_depends_target_sphere_importance
+  DEP_FILE = CMakeFiles\sphere_importance.dir\src\sphere_importance.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\sphere_importance.dir
+  OBJECT_FILE_DIR = CMakeFiles\sphere_importance.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target sphere_importance
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\sphere_importance.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_importance.exe: CXX_EXECUTABLE_LINKER__sphere_importance_Release CMakeFiles/sphere_importance.dir/src/sphere_importance.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\sphere_importance.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\sphere_importance.exe
+  TARGET_IMPLIB = libsphere_importance.dll.a
+  TARGET_PDB = sphere_importance.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target sphere_plot
+
+
+#############################################
+# Order-only phony target for sphere_plot
+
+build cmake_object_order_depends_target_sphere_plot: phony || CMakeFiles/sphere_plot.dir
+
+build CMakeFiles/sphere_plot.dir/src/sphere_plot.cpp.obj: CXX_COMPILER__sphere_plot_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/sphere_plot.cpp || cmake_object_order_depends_target_sphere_plot
+  DEP_FILE = CMakeFiles\sphere_plot.dir\src\sphere_plot.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\sphere_plot.dir
+  OBJECT_FILE_DIR = CMakeFiles\sphere_plot.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target sphere_plot
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\sphere_plot.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_plot.exe: CXX_EXECUTABLE_LINKER__sphere_plot_Release CMakeFiles/sphere_plot.dir/src/sphere_plot.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\sphere_plot.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\sphere_plot.exe
+  TARGET_IMPLIB = libsphere_plot.dll.a
+  TARGET_PDB = sphere_plot.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target cos_cubed
+
+
+#############################################
+# Order-only phony target for cos_cubed
+
+build cmake_object_order_depends_target_cos_cubed: phony || CMakeFiles/cos_cubed.dir
+
+build CMakeFiles/cos_cubed.dir/src/cos_cubed.cpp.obj: CXX_COMPILER__cos_cubed_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/cos_cubed.cpp || cmake_object_order_depends_target_cos_cubed
+  DEP_FILE = CMakeFiles\cos_cubed.dir\src\cos_cubed.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\cos_cubed.dir
+  OBJECT_FILE_DIR = CMakeFiles\cos_cubed.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target cos_cubed
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\cos_cubed.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_cubed.exe: CXX_EXECUTABLE_LINKER__cos_cubed_Release CMakeFiles/cos_cubed.dir/src/cos_cubed.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\cos_cubed.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\cos_cubed.exe
+  TARGET_IMPLIB = libcos_cubed.dll.a
+  TARGET_PDB = cos_cubed.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target cos_density
+
+
+#############################################
+# Order-only phony target for cos_density
+
+build cmake_object_order_depends_target_cos_density: phony || CMakeFiles/cos_density.dir
+
+build CMakeFiles/cos_density.dir/src/cos_density.cpp.obj: CXX_COMPILER__cos_density_Release E$:/Code_learn/C++Learn/RayTracingInOneWeekend/src/cos_density.cpp || cmake_object_order_depends_target_cos_density
+  DEP_FILE = CMakeFiles\cos_density.dir\src\cos_density.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IE:/Code_learn/C++Learn/RayTracingInOneWeekend/include
+  OBJECT_DIR = CMakeFiles\cos_density.dir
+  OBJECT_FILE_DIR = CMakeFiles\cos_density.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target cos_density
+
+
+#############################################
+# Link the executable E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\cos_density.exe
+
+build E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_density.exe: CXX_EXECUTABLE_LINKER__cos_density_Release CMakeFiles/cos_density.dir/src/cos_density.cpp.obj
+  FLAGS = -O3 -DNDEBUG
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\cos_density.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = E:\Code_learn\C++Learn\RayTracingInOneWeekend\bin\cos_density.exe
+  TARGET_IMPLIB = libcos_density.dll.a
+  TARGET_PDB = cos_density.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -105,6 +350,34 @@ build RayTracingInOneWeekend: phony E$:/Code_learn/C++Learn/RayTracingInOneWeeke
 
 build RayTracingInOneWeekend.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe
 
+build cos_cubed: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_cubed.exe
+
+build cos_cubed.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_cubed.exe
+
+build cos_density: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_density.exe
+
+build cos_density.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_density.exe
+
+build estimate_halfway: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/estimate_halfway.exe
+
+build estimate_halfway.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/estimate_halfway.exe
+
+build integrate_x_sq: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/integrate_x_sq.exe
+
+build integrate_x_sq.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/integrate_x_sq.exe
+
+build pi: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/pi.exe
+
+build pi.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/pi.exe
+
+build sphere_importance: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_importance.exe
+
+build sphere_importance.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_importance.exe
+
+build sphere_plot: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_plot.exe
+
+build sphere_plot.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_plot.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -113,7 +386,7 @@ build RayTracingInOneWeekend.exe: phony E$:/Code_learn/C++Learn/RayTracingInOneW
 #############################################
 # Folder: E:/Code_learn/C++Learn/RayTracingInOneWeekend/cmake-build-release
 
-build all: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe
+build all: phony E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/RayTracingInOneWeekend.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/pi.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/estimate_halfway.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/integrate_x_sq.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_importance.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/sphere_plot.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_cubed.exe E$:/Code_learn/C++Learn/RayTracingInOneWeekend/bin/cos_density.exe
 
 # =============================================================================
 # Built-in targets
